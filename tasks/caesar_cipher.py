@@ -12,10 +12,14 @@ shift = int(input("Type the shift number:\n"))
 def caesar_cipher(original_text, shift_amount, encode_or_decode):
     output_text = ""
     for letter in original_text:
-        if encode_or_decode == "decode":
-            shift_amount *= -1
-        shift_amount %= len(alphabet)
-        output_text += alphabet[shift_amount]
+        if letter not in alphabet:
+            output_text += letter
+        else:
+            if encode_or_decode == "decode":
+                shift_amount *= -1
+            shifted_position = alphabet.index(letter) + shift_amount
+            shifted_position %= len(alphabet)
+            output_text += alphabet[shifted_position]
     print(f"Here is the {direction}ed result: {output_text}")
 
 
